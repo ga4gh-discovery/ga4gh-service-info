@@ -1,0 +1,26 @@
+openapi: 3.0.0
+servers: []
+info:
+  version: "0.1-SNAPSHOT"
+  title: GA4GH service-info API Specification
+  description: >-
+    GA4GH service-info specification.
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+paths:
+  /service-info:
+    get:
+      description: Get information about the service
+      operationId: getServiceInfo
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceInfo'
+components:
+  schemas:
+    ServiceInfo:
+      type: object
