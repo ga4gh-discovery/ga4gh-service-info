@@ -24,3 +24,17 @@ components:
   schemas:
     ServiceInfo:
       type: object
+      required:
+        - name
+        - version
+      properties:
+        name:
+          type: string
+          description: Name of the service.
+        description:
+          type: string
+          description: Description of the service.
+        version:
+          type: string
+          description: Version of the service.
+          example: 0.1
