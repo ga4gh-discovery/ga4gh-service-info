@@ -1,10 +1,9 @@
-openapi: 3.0.0
+openapi: 3.0.2
 servers: []
 info:
   version: "0.1-SNAPSHOT"
-  title: GA4GH service-info API Specification
-  description: >-
-    GA4GH service-info specification.
+  title: GA4GH service-info API specification
+  description: GA4GH service-info specification.
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
@@ -25,9 +24,14 @@ components:
     ServiceInfo:
       type: object
       required:
+        - id
         - name
         - version
       properties:
+        id:
+          type: string
+          description: Unique ID of this service. Reverse domain name notation is recommended, though not required.
+          example: 'org.ga4gh.service'
         name:
           type: string
           description: Name of the service.
@@ -37,4 +41,4 @@ components:
         version:
           type: string
           description: Version of the service.
-          example: 0.1
+          example: '0.1'
