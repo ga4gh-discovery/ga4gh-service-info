@@ -1,7 +1,7 @@
 openapi: 3.0.2
 servers: []
 info:
-  version: "0.1-SNAPSHOT"
+  version: '0.1-SNAPSHOT'
   title: GA4GH service-info API specification
   description: GA4GH service-info specification.
   license:
@@ -40,6 +40,15 @@ components:
           type: string
           description: Description of the service.
           example: 'The 1000 Genomes Project is the largest public catalogue of human variation and genotype data.'
+        documentationUrl:
+          type: string
+          description: URL of the documentation of this service (RFC 3986 format).
+          example: 'https://docs.example.com'
+        contactUrl:
+          type: string
+          description: 'URL of the contact for the host/maintainer of this service, e.g. a link
+            to a contact form (RFC 3986 format), or an email (RFC 2368 format).'
+          example: 'mailto:support@example.com'
         version:
           type: string
           description: Version of the service.
