@@ -30,10 +30,12 @@ components:
       properties:
         name:
           type: string
-          description: Name of the service.
+          description: Name of this specific service.
+          example: '1000 Genomes Project'
         description:
           type: string
           description: Description of the service.
+          example: 'The 1000 Genomes Project is the largest public catalogue of human variation and genotype data.'
         version:
           type: string
           description: Version of the service.
