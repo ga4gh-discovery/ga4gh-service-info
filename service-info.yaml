@@ -27,16 +27,21 @@ components:
         - id
         - name
         - version
+        - type
         - organization
       properties:
         id:
           type: string
-          description: Unique ID of this service. Reverse domain name notation is recommended, though not required. Should be the same as other services, which expose the same API and can be treated as equivalents.
+          description: Unique ID of this service. Reverse domain name notation is recommended, though not required.
           example: 'org.ga4gh.service'
         name:
           type: string
           description: Name of this service. Should be human readable
           example: '1000 Genomes Project'
+        type:
+          type: string
+          description: A field used to flag the same type of service and therefore used to aggregate between resources, which can be considered equivalents. For GA4GH services this is a lightly controlled enumeration field.
+          example: 'urn:ga4gh:beacon'
         description:
           type: string
           description: Description of the service. Should be human readable and provide information about the service beyond just basics
