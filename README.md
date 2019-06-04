@@ -1,4 +1,4 @@
-# GA4GH service-info specification [![](https://travis-ci.org/ga4gh-discovery/service-info.svg?branch=develop)](https://travis-ci.org/ga4gh-discovery/service-info) [![](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/ga4gh-discovery/service-info/develop/LICENSE)
+# GA4GH service-info specification v1.0.0 [![](https://travis-ci.org/ga4gh-discovery/service-info.svg?branch=develop)](https://travis-ci.org/ga4gh-discovery/service-info) [![](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/ga4gh-discovery/service-info/develop/LICENSE)
 
 Service discovery is at the root of any computational workflow using web-based APIs. Normally this is hard-coded into workflows and discovery is a manual process. Service-info provides a way for an API to provide a minimal set of metadata to help discovery and aggregation of equivalent services via computational methods. In addition, service-info also allows a server/implementation to describe its capabilities and limitations.
 
