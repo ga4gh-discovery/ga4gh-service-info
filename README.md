@@ -1,4 +1,4 @@
-# GA4GH service-info specification v1.0.0 [![](https://travis-ci.org/ga4gh-discovery/service-info.svg?branch=develop)](https://travis-ci.org/ga4gh-discovery/service-info) [![](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/ga4gh-discovery/service-info/develop/LICENSE)
+# GA4GH service-info specification v1.0.0 [![](https://travis-ci.org/ga4gh-discovery/ga4gh-service-info.svg?branch=develop)](https://travis-ci.org/ga4gh-discovery/ga4gh-service-info) [![](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/ga4gh-discovery/ga4gh-service-info/develop/LICENSE)
 
 Service discovery is at the root of any computational workflow using web-based APIs. Traditionally, this is hard-coded into workflows, and discovery is a manual process. Service-info provides a way for an API to expose a set of metadata to help discovery and aggregation of services via computational methods. It also allows a server/implementation to describe its capabilities and limitations.
 
@@ -6,7 +6,7 @@ This document is intended to be used by service-info implementors and consumers.
 
 # Specification
 
-Service-info is described in our [OpenAPI specification](./service-info.yaml), which can be visualised using [Swagger Editor](https://editor.swagger.io/?url=https://raw.githubusercontent.com/ga4gh-discovery/service-info/develop/service-info.yaml).
+Service-info is described in our [OpenAPI specification](./service-info.yaml), which can be visualised using [Swagger Editor](https://editor.swagger.io/?url=https://raw.githubusercontent.com/ga4gh-discovery/ga4gh-service-info/develop/service-info.yaml).
 
 ## Design Principles
 

@@ -53,7 +53,7 @@ components:
         organization:
           type: string
           description: 'A short string used to identify the organization providing this service.'
-          example: EMBL-EBI
+          example: 'EMBL-EBI'
         contactUrl:
           type: string
           description: 'URL of the contact for the host/maintainer of this service, e.g. a link to a contact form (RFC 3986 format), or an email (RFC 2368 format).'
