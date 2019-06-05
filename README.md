@@ -1,4 +1,4 @@
-# GA4GH service-info specification v1.0.0 [![](https://travis-ci.org/ga4gh-discovery/ga4gh-service-info.svg?branch=develop)](https://travis-ci.org/ga4gh-discovery/ga4gh-service-info) [![](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/ga4gh-discovery/ga4gh-service-info/develop/LICENSE)
+# GA4GH service-info specification [![](https://travis-ci.org/ga4gh-discovery/ga4gh-service-info.svg?branch=develop)](https://travis-ci.org/ga4gh-discovery/ga4gh-service-info) [![](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/ga4gh-discovery/ga4gh-service-info/develop/LICENSE)
 
 Service discovery is at the root of any computational workflow using web-based APIs. Traditionally, this is hard-coded into workflows, and discovery is a manual process. Service-info provides a way for an API to expose a set of metadata to help discovery and aggregation of services via computational methods. It also allows a server/implementation to describe its capabilities and limitations.
 
@@ -7,10 +7,6 @@ This document is intended to be used by service-info implementors and consumers.
 # Specification
 
 Service-info is described in our [OpenAPI specification](./service-info.yaml), which can be visualised using [Swagger Editor](https://editor.swagger.io/?url=https://raw.githubusercontent.com/ga4gh-discovery/ga4gh-service-info/develop/service-info.yaml).
-
-## Design Principles
-
-Service-info is intended to be a lightweight single payload response service to deliver essential metadata to enable service consumers. It should not be computationally expensive to generate and serve this endpoint. As such, the only response is a single successful payload. All other error responses should be handled as the service implementor sees fit. Clients should only process requests, which return with a successful HTTP response code.
 
 ## Essentials
 
@@ -23,7 +19,7 @@ When responding to a request a server MUST use the fully specified media type fo
 - application/json; charset=utf-8
   - application/json
 
-No vendor specific description has been given here as service-info intends should be incorperated into them.
+No vendor specific description has been given here as service-info intends should be incorperated into other specifications.
 
 ### HTTP Response Codes
 
