@@ -51,10 +51,6 @@ Guidelines for contributing to this repository are listed in [CONTRIBUTING.md](C
 
 Please send an email to security-notification@ga4gh.org.
 
-# Future Enhancements
-
-No future enhancements are planned in this specification.
-
 # Contributors
 
 The following people have contributed to the design of this specification.
