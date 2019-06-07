@@ -26,9 +26,9 @@ components:
       required:
         - id
         - name
-        - version
         - type
         - organization
+        - version
       properties:
         id:
           type: string
@@ -60,7 +60,7 @@ components:
           example: 'mailto:support@example.com'
         version:
           type: string
-          description: 'Version of the service being described.'
+          description: 'Version of the service being described. Semantic versioning is recommended, but other identifiers, such as dates or commit hashes, are also allowed. The version should be changed whenever the service is updated.'
           example: '1.0.0'
         extension:
           type: object
