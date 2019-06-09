@@ -50,6 +50,10 @@ components:
           type: string
           description: 'URL of the documentation of this service (RFC 3986 format). This should help someone learn how to use your service including any specifics required to access data, e.g. authentication.'
           example: 'https://docs.example.com'
+        schemaUrl:
+          type: string
+          description: 'URL of the API schema used by this service (RFC 3986 format). This should help machine code to self-configure and use the service'
+          example: 'https://example.com/swagger.yaml'
         organization:
           type: string
           description: 'A short string used to identify the organization providing this service.'
