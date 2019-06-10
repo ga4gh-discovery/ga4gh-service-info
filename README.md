@@ -19,7 +19,7 @@ When responding to a request a server MUST use the fully specified media type fo
 - application/json; charset=utf-8
   - application/json
 
-No vendor specific description has been given here as service-info intends should be incorperated into other specifications.
+No vendor specific description has been given here as service-info intends should be incorporated into other specifications.
 
 ### HTTP Response Codes
 
