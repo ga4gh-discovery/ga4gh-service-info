@@ -1,12 +1,15 @@
 openapi: 3.0.2
 servers: []
 info:
-  version: '1.0.0'
+  version: 1.0.0
   title: GA4GH service-info API specification
-  description: 'GA4GH service-info specification. A way for a service to describe basic metadata concerning a service alongside a set of capabilities and/or limitations of the service.'
+  description: 'A way for a service to describe basic metadata concerning a service alongside a set of capabilities and/or limitations of the service. More information on [GitHub](https://github.com/ga4gh-discovery/ga4gh-service-info/).'
   license:
     name: Apache 2.0
-    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+    url: 'https://raw.githubusercontent.com/ga4gh-discovery/ga4gh-service-info/develop/LICENSE'
+  contact:
+    name: GA4GH Discovery Networks Team
+    email: ga4gh-discovery-networks@ga4gh.org
 paths:
   /service-info:
     get:
@@ -52,7 +55,7 @@ components:
           example: 'https://docs.example.com'
         organization:
           type: string
-          description: 'A short string used to identify the organization providing this service.'
+          description: 'Name of the organization providing this service.'
           example: 'EMBL-EBI'
         contactUrl:
           type: string
