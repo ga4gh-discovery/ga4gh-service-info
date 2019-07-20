@@ -48,7 +48,10 @@ components:
         description:
           type: string
           description: 'Description of the service. Should be human readable and provide information about the service.'
-          example: 'The 1000 Genomes Project is the largest public catalogue of human variation and genotype data.'
+          example: |
+            The 1000 Genomes Project provides a large public catalogue of
+            human genome variation data which serves as standard reference
+            in many genomic workflows and analysis projects.
         documentationUrl:
           type: string
           description: 'URL of the documentation of this service (RFC 3986 format). This should help someone learn how to use your service including any specifics required to access data, e.g. authentication.'
