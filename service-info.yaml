@@ -71,3 +71,13 @@ components:
         extension:
           type: object
           description: 'A sub-object used by implementing services to provide additional required data about the service. Extensions are not compatible between implementations of service-info, but should be consistent between services sharing a single identifier.'
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp of service creation in RFC 3339.
+          example: '2019-06-04T12:58:19Z'
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp of service modification in RFC 3339.
+          example: '2019-06-04T12:58:19Z'
