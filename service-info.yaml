@@ -43,8 +43,12 @@ components:
           example: '1000 Genomes Project'
         type:
           type: string
-          description: 'Type of the service. For GA4GH services this is a lightly controlled enumeration field.'
-          example: 'urn:ga4gh:beacon'
+          description: |
+            Type of service in URN format ('groupId:artifactId:version').
+            - groupId: Reversed domain name (e.g. org.ga4gh).
+            - artifactId: Name of the artifact or specification without version (e.g. beacon; drs).
+            - version: Version number (e.g. 1.0.1).
+          example: 'org.ga4gh:beacon:1.0.1'
         description:
           type: string
           description: 'Description of the service. Should be human readable and provide information about the service.'
