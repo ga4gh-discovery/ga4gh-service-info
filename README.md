@@ -21,12 +21,6 @@ When responding to a request a server MUST use the fully specified media type fo
 
 No vendor specific description has been given here as service-info intends should be incorporated into other specifications.
 
-### HTTP Response Codes
-
-- `200`: indicates a successful request and response
-- `4XX`: indicates a unsuccessful response due to a client error
-- `5XX`: indicates a unsuccessful response due to a server error
-
 ## Security
 
 Service metadata is viewed as public data and can be provided without restriction. However, an implementation may choose to distribute additional metadata, which may be considered sensitive. Effective security measures are essential to protect the integrity and confidentiality of these data.
