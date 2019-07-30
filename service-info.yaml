@@ -10,6 +10,8 @@ info:
   contact:
     name: GA4GH Discovery Networks Team
     email: ga4gh-discovery-networks@ga4gh.org
+security:
+  - authToken: []
 paths:
   /service-info:
     get:
@@ -23,6 +25,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/ServiceInfo'
 components:
+  securitySchemes:
+    authToken:
+      description: |
+        A valid authorization token must be passed in the 'Authorization' header.
+        Example syntax for using 'Authorization' header :
+          Bearer: token_string
+      type: apiKey
+      name: Authorization
+      in: header
   schemas:
     ServiceInfo:
       type: object
