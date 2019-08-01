@@ -39,7 +39,7 @@ The policies and processes used to perform user authentication and authorization
 
 ## How to contribute
 
-Guidelines for contributing to this repository are listed in [CONTRIBUTING.md](CONTRIBUTING.md).
+Guidelines for contributing to this repository are listed in [CONTRIBUTING.md](CONTRIBUTING.md). Information on the specification maintainers is available from [MAINTAINERS.md](MAINTAINERS.md).
 
 ## How to notify GA4GH of potential security flaws
 
