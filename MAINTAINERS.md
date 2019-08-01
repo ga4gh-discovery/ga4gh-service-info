@@ -11,4 +11,4 @@ Even those with write access to the **ga4gh-discovery/ga4gh-service-info** repos
 
 ## Documents to update
 
-Service-info's main specification document is the [service-info.yaml OpenAPI document](./service-info.yaml). In addition, [service-info's README.md](./README.md) contains higher level information about the specification and must be kept in-line with changes to the OpenAPI document.
+Service-info's main specification document is the [service-info.yaml OpenAPI document](service-info.yaml). In addition, [service-info's README.md](README.md) contains higher level information about the specification and must be kept in-line with changes to the OpenAPI document.
