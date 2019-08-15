@@ -85,8 +85,8 @@ components:
           format: date-time
           description: Timestamp of service modification in RFC 3339.
           example: '2019-06-04T12:58:19Z'
-        maturity:
+        environment:
           type: string
-          description: 'Describes the level of maturity of the service deployed. Used to flag if a service is production ready or is serving another purpose'
+          description: 'Describes the deployment environment level of a service. Used to flag if a service is production ready or is serving another purpose such as available for testing or development'
           enum: [prod, dev, test]
-          default: unknown
+          example: test
