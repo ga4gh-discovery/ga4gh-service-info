@@ -32,7 +32,6 @@ components:
         - type
         - organization
         - version
-        - maturity
       properties:
         id:
           type: string
@@ -89,5 +88,5 @@ components:
         maturity:
           type: string
           description: 'Describes the level of maturity of the service deployed. Used to flag if a service is production ready or is serving another purpose'
-          enum: [prod, dev, test, unknown]
+          enum: [prod, dev, test]
           default: unknown
