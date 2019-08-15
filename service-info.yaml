@@ -74,6 +74,9 @@ components:
         organization:
           type: object
           description: 'Object to describe the organization providing a service instance'
+          required:
+            - url
+            - name
           properties:
             name:
               type: string
