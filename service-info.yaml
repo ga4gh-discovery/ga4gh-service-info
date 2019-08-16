@@ -70,9 +70,19 @@ components:
           description: 'URL of the documentation of this service (RFC 3986 format). This should help someone learn how to use your service including any specifics required to access data, e.g. authentication.'
           example: 'https://docs.example.com'
         organization:
-          type: string
-          description: 'Name of the organization providing this service.'
-          example: 'EMBL-EBI'
+          type: object
+          description: 'Object to describe the organization providing a service instance'
+          required:
+            - url
+            - name
+          properties:
+            name:
+              type: string
+              description: 'Name of the organization who is responsible for the service instance'
+            url:
+              type: string
+              format: uri
+              description: 'URL to follow to find more information about the organization'
         contactUrl:
           type: string
           format: uri
