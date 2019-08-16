@@ -83,9 +83,6 @@ components:
           type: string
           description: 'Version of the service being described. Semantic versioning is recommended, but other identifiers, such as dates or commit hashes, are also allowed. The version should be changed whenever the service is updated.'
           example: '1.0.0'
-        extension:
-          type: object
-          description: 'A sub-object used by implementing services to provide additional required data about the service. Extensions are not compatible between implementations of service-info, but should be consistent between services sharing a single identifier.'
         createdAt:
           type: string
           format: date-time
