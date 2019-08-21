@@ -1,5 +1,4 @@
 openapi: 3.0.2
-servers: []
 info:
   title: 'GA4GH service-info API specification'
   description: 'A way for a service to describe basic metadata concerning a service alongside a set of capabilities and/or limitations of the service. More information on [GitHub](https://github.com/ga4gh-discovery/ga4gh-service-info/).'
@@ -15,8 +14,8 @@ security:
 paths:
   /service-info:
     get:
-      description: 'Show information about the service'
-      operationId: 'getServiceInfo'
+      summary: 'Show information about the service'
+      operationId: getServiceInfo
       tags:
         - service-info
       responses:
@@ -38,7 +37,7 @@ components:
       in: header
   schemas:
     Service:
-      description: 'Web service'
+      description: 'GA4GH service'
       type: object
       required:
         - id
@@ -50,63 +49,66 @@ components:
         id:
           type: string
           description: 'Unique ID of this service. Reverse domain name notation is recommended, though not required.'
-          example: 'org.ga4gh.service'
+          example: 'org.ga4gh.myservice'
         name:
           type: string
           description: 'Name of this service. Should be human readable.'
-          example: 'Project name'
+          example: 'My project'
         type:
           type: string
           description: |
-            Type of service in URN format ('groupId:artifactId:version').
-            - groupId: Reversed domain name (e.g. org.ga4gh).
-            - artifactId: Name of the artifact or specification without version (e.g. beacon; drs).
-            - version: Version number (e.g. 1.0.1).
-          example: 'org.ga4gh:service:1.0.1'
+            Type of service. Use this to specify the API the service implements (e.g. a particular GA4GH specification). Use the 'group:artifact:version' format, where:
+
+            - group: Namespace in reverse domain name format. Use 'org.ga4gh' group for implementations compliant with official GA4GH specifications. For services with custom APIs not standardized by GA4GH, or implementations diverging from official GA4GH specifications, use a different namespace (e.g. your organization's reverse domain name).
+            - artifact: Name of the API or GA4GH specification implemented.
+            - version: Version of the API or specification. GA4GH specifications use semantic versioning.
+          example: 'org.ga4gh:beacon:1.0.0'
         description:
           type: string
           description: 'Description of the service. Should be human readable and provide information about the service.'
           example: 'This service provides...'
-        documentationUrl:
-          type: string
-          format: uri
-          description: 'URL of the documentation of this service (RFC 3986 format). This should help someone learn how to use your service including any specifics required to access data, e.g. authentication.'
-          example: 'https://docs.example.com'
         organization:
           type: object
-          description: 'Object to describe the organization providing a service instance'
+          description: 'Organization providing the service'
           required:
             - name
             - url
           properties:
             name:
               type: string
-              description: 'Name of the organization who is responsible for the service instance'
+              description: 'Name of the organization responsible for the service'
+              example: 'My organization'
             url:
               type: string
               format: uri
-              description: 'URL to follow to find more information about the organization'
+              description: 'URL of the website of the organization (RFC 3986 format)'
+              example: 'https://example.com'
         contactUrl:
           type: string
           format: uri
           description: 'URL of the contact for the host/maintainer of this service, e.g. a link to a contact form (RFC 3986 format), or an email (RFC 2368 format).'
           example: 'mailto:support@example.com'
-        version:
+        documentationUrl:
           type: string
-          description: 'Version of the service being described. Semantic versioning is recommended, but other identifiers, such as dates or commit hashes, are also allowed. The version should be changed whenever the service is updated.'
-          example: '1.0.0'
+          format: uri
+          description: 'URL of the documentation of this service (RFC 3986 format). This should help someone learn how to use your service, including any specifics required to access data, e.g. authentication.'
+          example: 'https://docs.myservice.example.com'
         createdAt:
           type: string
           format: date-time
-          description: 'Timestamp of service creation in RFC 3339'
+          description: 'Timestamp describing when the service was first deployed and available (RFC 3339 format)'
           example: '2019-06-04T12:58:19Z'
         updatedAt:
           type: string
           format: date-time
-          description: 'Timestamp of service modification in RFC 3339'
+          description: 'Timestamp describing when the service was last updated (RFC 3339 format)'
           example: '2019-06-04T12:58:19Z'
         environment:
           type: string
           enum: [prod, dev, test]
-          description: 'Describes the deployment environment level of a service. Used to flag if a service is production ready or is serving another purpose such as available for testing or development'
+          description: 'Environment the service is running in. Use this to distinguish between production, development and testing/staging deployments.'
           example: 'test'
+        version:
+          type: string
+          description: 'Version of the service being described. Semantic versioning is recommended, but other identifiers, such as dates or commit hashes, are also allowed. The version should be changed whenever the service is updated.'
+          example: '1.0.0'
