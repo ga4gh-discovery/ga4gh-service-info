@@ -1,29 +1,31 @@
 openapi: 3.0.2
 servers: []
 info:
-  version: 1.0.0
-  title: GA4GH service-info API specification
+  title: 'GA4GH service-info API specification'
   description: 'A way for a service to describe basic metadata concerning a service alongside a set of capabilities and/or limitations of the service. More information on [GitHub](https://github.com/ga4gh-discovery/ga4gh-service-info/).'
+  version: 1.0.0
   license:
-    name: Apache 2.0
+    name: 'Apache 2.0'
     url: 'https://raw.githubusercontent.com/ga4gh-discovery/ga4gh-service-info/develop/LICENSE'
   contact:
-    name: GA4GH Discovery Networks Team
-    email: ga4gh-discovery-networks@ga4gh.org
+    name: 'GA4GH Discovery Networks Team'
+    email: 'ga4gh-discovery-networks@ga4gh.org'
 security:
   - authToken: []
 paths:
   /service-info:
     get:
-      description: Get information about the service.
-      operationId: getServiceInfo
+      description: 'Show information about the service'
+      operationId: 'getServiceInfo'
+      tags:
+        - service-info
       responses:
         '200':
           description: 'A successful operation to request the service information about this running service.'
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ServiceInfo'
+                $ref: '#/components/schemas/Service'
 components:
   securitySchemes:
     authToken:
@@ -35,7 +37,8 @@ components:
       name: Authorization
       in: header
   schemas:
-    ServiceInfo:
+    Service:
+      description: 'Web service'
       type: object
       required:
         - id
@@ -63,18 +66,18 @@ components:
         description:
           type: string
           description: 'Description of the service. Should be human readable and provide information about the service.'
-          example: |
-            This service provides ......
+          example: 'This service provides...'
         documentationUrl:
           type: string
+          format: uri
           description: 'URL of the documentation of this service (RFC 3986 format). This should help someone learn how to use your service including any specifics required to access data, e.g. authentication.'
           example: 'https://docs.example.com'
         organization:
           type: object
           description: 'Object to describe the organization providing a service instance'
           required:
-            - url
             - name
+            - url
           properties:
             name:
               type: string
@@ -95,15 +98,15 @@ components:
         createdAt:
           type: string
           format: date-time
-          description: Timestamp of service creation in RFC 3339.
+          description: 'Timestamp of service creation in RFC 3339'
           example: '2019-06-04T12:58:19Z'
         updatedAt:
           type: string
           format: date-time
-          description: Timestamp of service modification in RFC 3339.
+          description: 'Timestamp of service modification in RFC 3339'
           example: '2019-06-04T12:58:19Z'
         environment:
           type: string
-          description: 'Describes the deployment environment level of a service. Used to flag if a service is production ready or is serving another purpose such as available for testing or development'
           enum: [prod, dev, test]
-          example: test
+          description: 'Describes the deployment environment level of a service. Used to flag if a service is production ready or is serving another purpose such as available for testing or development'
+          example: 'test'
