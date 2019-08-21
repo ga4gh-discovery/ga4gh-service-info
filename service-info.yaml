@@ -10,11 +10,11 @@ info:
     name: 'GA4GH Discovery Networks Team'
     email: 'ga4gh-discovery-networks@ga4gh.org'
 security:
-  - authToken: []
+  - bearerAuth: []
 paths:
   /service-info:
     get:
-      summary: 'Show information about the service'
+      summary: 'Show information about this service'
       operationId: getServiceInfo
       tags:
         - service-info
@@ -27,14 +27,10 @@ paths:
                 $ref: '#/components/schemas/Service'
 components:
   securitySchemes:
-    authToken:
-      description: |
-        A valid authorization token must be passed in the 'Authorization' header.
-        Example syntax for using 'Authorization' header :
-          Bearer: token_string
-      type: apiKey
-      name: Authorization
-      in: header
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     Service:
       description: 'GA4GH service'
@@ -59,7 +55,7 @@ components:
           description: |
             Type of service. Use this to specify the API the service implements (e.g. a particular GA4GH specification). Use the 'group:artifact:version' format, where:
 
-            - group: Namespace in reverse domain name format. Use 'org.ga4gh' group for implementations compliant with official GA4GH specifications. For services with custom APIs not standardized by GA4GH, or implementations diverging from official GA4GH specifications, use a different namespace (e.g. your organization's reverse domain name).
+            - group: Namespace in reverse domain name format. Use `org.ga4gh` group for implementations compliant with official GA4GH specifications. For services with custom APIs not standardized by GA4GH, or implementations diverging from official GA4GH specifications, use a different namespace (e.g. your organization's reverse domain name).
             - artifact: Name of the API or GA4GH specification implemented.
             - version: Version of the API or specification. GA4GH specifications use semantic versioning.
           example: 'org.ga4gh:beacon:1.0.0'
@@ -86,7 +82,7 @@ components:
         contactUrl:
           type: string
           format: uri
-          description: 'URL of the contact for the host/maintainer of this service, e.g. a link to a contact form (RFC 3986 format), or an email (RFC 2368 format).'
+          description: 'URL of the contact for the provider of this service, e.g. a link to a contact form (RFC 3986 format), or an email (RFC 2368 format).'
           example: 'mailto:support@example.com'
         documentationUrl:
           type: string
