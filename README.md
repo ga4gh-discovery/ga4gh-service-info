@@ -113,6 +113,12 @@ For example, let's say you have a service `foobar`, running at `https://foobar.e
 
 If you want your service to advertise multiple `/service-info` endpoints it provides, we recommend you implement a [Service Registry](https://github.com/ga4gh-discovery/ga4gh-service-registry). Using the `foobar` example service, this would include e.g. a `https://foobar.example.com/services` endpoint.
 
+### How do I describe a service implementing a chain of specifications?
+
+If your service implements multiple specifications transitively, its `type` should reflect the most specialized one. For example, let's say we have specifications `foo`, `bar` and `baz`, where `bar` extends `baz`, and `foo` extends `bar`. Your service implements `foo`, and thus transitively also `bar` and `baz`. Its type should refer to (a version of) `foo`.
+
+If you're dealing with a hierarchy of specifications that don't form a perfect chain, i.e. you're implementing multiple specifications with a common parent, consider providing [multiple /service-info endpoints](#how-do-i-describe-a-service-implementing-multiple-specifications).
+
 ### Can I use this specification with my custom, non-GA4GH APIs?
 
 Definitely! Just specify a custom service type as per description of the `type` field.
