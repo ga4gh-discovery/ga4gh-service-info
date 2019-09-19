@@ -70,18 +70,18 @@ As an example of implementation, feel free to check out the [service registry re
 
 ### Internet Media Types Handling
 
-When responding to a request a server MUST use the fully specified media type for that endpoint. When determining if a request is well-formed, a server MUST allow a internet type to degrade like so:
+When responding to a request a server MUST use the fully specified media type for that endpoint. When determining if a request is well-formed, a server MUST allow a media type to degrade like so:
 
 - application/json; charset=utf-8
   - application/json
 
-No vendor specific description has been given here as service-info intends should be incorporated into other specifications.
+No vendor specific description has been given here as service-info intends to be incorporated into other specifications.
 
 ### Security
 
-Service metadata is viewed as public data and can be provided without restriction. However, an implementation may choose to distribute additional metadata, which may be considered sensitive. Effective security measures are essential to protect the integrity and confidentiality of these data.
+Service metadata is viewed as public data and can be provided without restriction. However, an implementation may choose to distribute additional metadata, which may be considered sensitive. Effective security measures are essential to protect the integrity and confidentiality of this data.
 
-Sensitive information transmitted on public networks, such as access tokens and human genomic data, MUST be protected using Transport Level Security (TLS) version 1.2 or later, as specified in RFC 5246.
+Sensitive information transmitted over public networks, such as access tokens and human genomic data, MUST be protected using Transport Level Security (TLS) version 1.2 or later, as specified in [RFC 5246](https://tools.ietf.org/html/rfc5246).
 
 If the data holder requires client authentication and/or authorization, then the client’s HTTPS API request MUST present an OAuth 2.0 bearer access token as specified in [RFC 6750](https://tools.ietf.org/html/rfc6750), in the `Authorization` request header field with the Bearer authentication scheme:
 
@@ -89,7 +89,7 @@ If the data holder requires client authentication and/or authorization, then the
 Authorization: Bearer [access_token]
 ```
 
-The policies and processes used to perform user authentication and authorization, and the means through which access tokens are issued, are beyond the scope of this API specification. GA4GH recommends the use of the OAuth 2.0 framework ([RFC 6749](https://tools.ietf.org/html/rfc6749)) for authentication and authorization.
+The policies and processes used to perform user authentication and authorization, and the means through which access tokens are issued, are beyond the scope of this API specification. GA4GH recommends the use of the [OpenID Connect](https://openid.net/connect/) and [OAuth 2.0 framework (RFC 6749)](https://tools.ietf.org/html/rfc6749) for authentication and authorization.
 
 ## How to contribute
 
