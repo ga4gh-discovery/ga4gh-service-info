@@ -52,7 +52,9 @@ paths:
       $ref: 'https://raw.githubusercontent.com/ga4gh-discovery/ga4gh-service-info/develop/service-info.yaml#/components/schemas/Service'
 ```
 
-Your OAS 3 API might want to define additional service information as well. To do that, use the `allOf` OAS 3 construct. Suppose, for example, we want to add a new required string field named `field`:
+### Extending service info payloads
+
+Your OAS 3 API might want to define additional service information as well. To do that, use the `allOf` OAS 3 construct. Suppose, for example, we want to add a new required string field named `mycustomfield`:
 
 ```yaml
     Service:
@@ -60,11 +62,13 @@ Your OAS 3 API might want to define additional service information as well. To d
         - $ref: 'https://raw.githubusercontent.com/ga4gh-discovery/ga4gh-service-info/develop/service-info.yaml#/components/schemas/Service'
         - type: object
           properties:
-            field:
+            mycustomfield:
               type: string
           required:
-            - field
+            - mycustomfield
 ```
+
+Using this method you can communicate to clients additional information about a service.
 
 ### How to implement this specification
 
