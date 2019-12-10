@@ -1,8 +1,10 @@
+![](https://www.ga4gh.org/wp-content/themes/ga4gh-theme/gfx/GA-logo-horizontal-tag-RGB.svg)
+
 # GA4GH service-info specification [![](https://travis-ci.org/ga4gh-discovery/ga4gh-service-info.svg?branch=develop)](https://travis-ci.org/ga4gh-discovery/ga4gh-service-info) [![](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/ga4gh-discovery/ga4gh-service-info/develop/LICENSE)
 
 Service discovery is at the root of any computational workflow using web-based APIs. Traditionally, this is hard-coded into workflows, and discovery is a manual process. Service-info provides a way for an API to expose a set of metadata to help discovery and aggregation of services via computational methods. It also allows a server/implementation to describe its capabilities and limitations.
 
-This document is intended to be used by service-info implementors and consumers. 
+This document is intended to be used by service-info implementors and consumers.
 
 ## Specification
 
@@ -11,6 +13,10 @@ Service-info is described in our [OpenAPI specification](./service-info.yaml), w
 ### Essentials
 
 All API invocations are made to a configurable HTTP(S) endpoint, receive HTTP headers, and return text or other allowed formatting as requested by the client. Successful requests result with HTTP status code 200 and have the appropriate text encoding in the response body. The client and server may mutually negotiate HTTP/2 upgrade using the standard mechanism.
+
+### Errors
+
+The service info specification only defines a response for a successful request i.e. a request that responds with a 200 payload. All other error codes and payloads reported are left to the implementing service.
 
 ### How to use and extend this specification
 
@@ -58,7 +64,7 @@ Your OAS 3 API might want to define additional service information as well. To d
               type: string
           required:
             - field
-``` 
+```
 
 ### How to implement this specification
 
@@ -91,6 +97,12 @@ Authorization: Bearer [access_token]
 
 The policies and processes used to perform user authentication and authorization, and the means through which access tokens are issued, are beyond the scope of this API specification. GA4GH recommends the use of the [OpenID Connect](https://openid.net/connect/) and [OAuth 2.0 framework (RFC 6749)](https://tools.ietf.org/html/rfc6749) for authentication and authorization.
 
+### CORS
+
+Cross-origin resource sharing (CORS) is an essential technique used to overcome the same origin content policy seen in browsers. This policy restricts a webpage from making a request to another website and leaking potentially sensitive information. However the same origin policy is a barrier to using open APIs. GA4GH open API implementers should enable CORS to an acceptable level as defined by their internal policy. For any public API implementations should allow requests from any server.
+
+GA4GH is publishing a [CORS best practices document](https://docs.google.com/document/d/1Ifiik9afTO-CEpWGKEZ5TlixQ6tiKcvug4XLd9GNcqo/edit?usp=sharing), which implementers should refer to for guidance when enabling CORS on public API instances.
+
 ## How to contribute
 
 Guidelines for contributing to this repository are listed in [CONTRIBUTING.md](CONTRIBUTING.md).
@@ -121,7 +133,7 @@ If you're dealing with a hierarchy of specifications that don't form a perfect c
 
 ### Can I use this specification with my custom, non-GA4GH APIs?
 
-Definitely! Just specify a custom service type as per description of the `type` field.
+Definitely! Just specify a custom group and artifact as per description of the `type` object.
 
 ## Contributors
 

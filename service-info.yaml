@@ -14,7 +14,7 @@ security:
 paths:
   /service-info:
     get:
-      summary: 'Show information about this service'
+      summary: 'Show information about this service. It is assumed that removing this endpoint from a URL will result in a valid URL to query against'
       operationId: getServiceInfo
       tags:
         - service-info
@@ -44,21 +44,32 @@ components:
       properties:
         id:
           type: string
-          description: 'Unique ID of this service. Reverse domain name notation is recommended, though not required.'
+          description: 'Unique ID of this service. Reverse domain name notation is recommended, though not required. The identifier should attempt to be globally unique so it can be used in downstream aggregator services e.g. Service Registry.'
           example: 'org.ga4gh.myservice'
         name:
           type: string
           description: 'Name of this service. Should be human readable.'
           example: 'My project'
         type:
-          type: string
-          description: |
-            Type of service. Use this to specify the API the service implements (e.g. a particular GA4GH specification). Use the 'group:artifact:version' format, where:
-
-            - group: Namespace in reverse domain name format. Use `org.ga4gh` group for implementations compliant with official GA4GH specifications. For services with custom APIs not standardized by GA4GH, or implementations diverging from official GA4GH specifications, use a different namespace (e.g. your organization's reverse domain name).
-            - artifact: Name of the API or GA4GH specification implemented.
-            - version: Version of the API or specification. GA4GH specifications use semantic versioning.
-          example: 'org.ga4gh:beacon:1.0.0'
+          type: object
+          description: Information pertaining to the type of service being operated. Custom groups and artifacts are supported.
+          required:
+            - group
+            - artifact
+            - version
+          properties:
+            group:
+              type: string
+              description: Namespace in reverse domain name format. Use `ga4gh` for implementations compliant with official GA4GH specifications. For services with custom APIs not standardized by GA4GH, or implementations diverging from official GA4GH specifications, use a different namespace (e.g. your organization's reverse domain name).
+              example: ga4gh
+            artifact:
+              type: string
+              description: Name of the API or GA4GH specification implemented. Official GA4GH types should be assigned as part of GA4GH's standards approval process.
+              example: beacon
+            version:
+              type: string
+              description: Version of the API or specification. GA4GH specifications use semantic versioning.
+              example: '1.0.0'
         description:
           type: string
           description: 'Description of the service. Should be human readable and provide information about the service.'
@@ -89,6 +100,16 @@ components:
           format: uri
           description: 'URL of the documentation of this service (RFC 3986 format). This should help someone learn how to use your service, including any specifics required to access data, e.g. authentication.'
           example: 'https://docs.myservice.example.com'
+        authUrl:
+          type: string
+          format: uri
+          description: 'URL where an authentication token can be obtained for the service (if required).'
+          example: 'https://docs.myservice.example.com/auth'
+        authType:
+          type: string
+          enum: [passports]
+          description: 'URL where an authentication token can be obtained for the service (if required).'
+          example: 'https://myservice.example.com/auth'
         createdAt:
           type: string
           format: date-time
@@ -101,8 +122,7 @@ components:
           example: '2019-06-04T12:58:19Z'
         environment:
           type: string
-          enum: [prod, dev, test]
-          description: 'Environment the service is running in. Use this to distinguish between production, development and testing/staging deployments.'
+          description: 'Environment the service is running in. Use this to distinguish between production, development and testing/staging deployments. Suggested values are prod, test, dev, staging. However this is advised and not enforced'
           example: 'test'
         version:
           type: string
