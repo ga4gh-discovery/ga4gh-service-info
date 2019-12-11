@@ -100,16 +100,6 @@ components:
           format: uri
           description: 'URL of the documentation of this service (RFC 3986 format). This should help someone learn how to use your service, including any specifics required to access data, e.g. authentication.'
           example: 'https://docs.myservice.example.com'
-        authUrl:
-          type: string
-          format: uri
-          description: 'URL where an authentication token can be obtained for the service (if required).'
-          example: 'https://docs.myservice.example.com/auth'
-        authType:
-          type: string
-          enum: [passports]
-          description: 'URL where an authentication token can be obtained for the service (if required).'
-          example: 'https://myservice.example.com/auth'
         createdAt:
           type: string
           format: date-time
