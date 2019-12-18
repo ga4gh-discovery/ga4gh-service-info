@@ -112,7 +112,7 @@ components:
           example: '2019-06-04T12:58:19Z'
         environment:
           type: string
-          description: 'Environment the service is running in. Use this to distinguish between production, development and testing/staging deployments. Suggested values are prod, test, dev, staging. However this is advised and not enforced'
+          description: 'Environment the service is running in. Use this to distinguish between production, development and testing/staging deployments. Suggested values are prod, test, dev, staging. However this is advised and not enforced.'
           example: 'test'
         version:
           type: string
