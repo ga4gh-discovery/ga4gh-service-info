@@ -1,0 +1,116 @@
+openapi: 3.0.2
+servers: []
+info:
+  version: 1.0.0
+  title: GA4GH service-info API specification
+  description: >-
+    A way for a service to describe basic metadata concerning a service
+    alongside a set of capabilities and/or limitations of the service. More
+    information on
+    [GitHub](https://github.com/ga4gh-discovery/ga4gh-service-info/).
+  license:
+    name: Apache 2.0
+    url: >-
+      https://raw.githubusercontent.com/ga4gh-discovery/ga4gh-service-info/develop/LICENSE
+  contact:
+    name: GA4GH Discovery Networks Team
+    email: ga4gh-discovery-networks@ga4gh.org
+paths:
+  /service-info:
+    get:
+      description: Get information about the service.
+      operationId: getServiceInfo
+      responses:
+        '200':
+          description: >-
+            A successful operation to request the service information about this
+            running service.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceInfo'
+components:
+  schemas:
+    ServiceInfo:
+      type: object
+      required:
+        - id
+        - name
+        - type
+        - organization
+        - version
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique ID of this service. Reverse domain name notation is
+            recommended, though not required.
+          example: org.ga4gh.service
+        name:
+          type: string
+          description: Name of this service. Should be human readable.
+          example: 1000 Genomes Project
+        type:
+          type: string
+          description: >
+            Type of service in URN format ('groupId:artifactId:version').
+
+            - groupId: Reversed domain name (e.g. org.ga4gh).
+
+            - artifactId: Name of the artifact or specification without version
+            (e.g. beacon; drs).
+
+            - version: Version number (e.g. 1.0.1).
+          example: 'org.ga4gh:beacon:1.0.1'
+        description:
+          type: string
+          description: >-
+            Description of the service. Should be human readable and provide
+            information about the service.
+          example: |
+            The 1000 Genomes Project provides a large public catalogue of
+            human genome variation data which serves as standard reference
+            in many genomic workflows and analysis projects.
+        documentationUrl:
+          type: string
+          description: >-
+            URL of the documentation of this service (RFC 3986 format). This
+            should help someone learn how to use your service including any
+            specifics required to access data, e.g. authentication.
+          example: 'https://docs.example.com'
+        organization:
+          type: string
+          description: Name of the organization providing this service.
+          example: EMBL-EBI
+        contactUrl:
+          type: string
+          description: >-
+            URL of the contact for the host/maintainer of this service, e.g. a
+            link to a contact form (RFC 3986 format), or an email (RFC 2368
+            format).
+          example: 'mailto:support@example.com'
+        version:
+          type: string
+          description: >-
+            Version of the service being described. Semantic versioning is
+            recommended, but other identifiers, such as dates or commit hashes,
+            are also allowed. The version should be changed whenever the service
+            is updated.
+          example: 1.0.0
+        extension:
+          type: object
+          description: >-
+            A sub-object used by implementing services to provide additional
+            required data about the service. Extensions are not compatible
+            between implementations of service-info, but should be consistent
+            between services sharing a single identifier.
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp of service creation in RFC 3339.
+          example: '2019-06-04T12:58:19Z'
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp of service modification in RFC 3339.
+          example: '2019-06-04T12:58:19Z'
