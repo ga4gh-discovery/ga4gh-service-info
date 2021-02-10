@@ -100,6 +100,8 @@ components:
           type: string
           description: 'Version of the service being described. Semantic versioning is recommended, but other identifiers, such as dates or commit hashes, are also allowed. The version should be changed whenever the service is updated.'
           example: '1.0.0'
+        authInfo:
+          $ref: '#/components/schemas/AuthInfo'
     ServiceType:
       description: 'Type of a GA4GH service'
       type: object
@@ -120,3 +122,70 @@ components:
           type: string
           description: 'Version of the API or specification. GA4GH specifications use semantic versioning.'
           example: '1.0.0'
+    AuthInfo:
+      description: Provides information on how to authenticate and authorize to the web service, enabling automated client auth
+      type: object
+      required:
+        - authServer
+        - scopeDefinitions
+      properties:
+        authServer:
+          $ref: '#/components/schemas/AuthServer'
+        scopeDefinitions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScopeDefinition'
+    AuthServer:
+      type: object
+      description: |
+        The authorization server responsible for authorizing clients/users to the web service.
+        Outlines API endpoints specific to the OAuth 2 framework [RFC 6749](https://tools.ietf.org/html/rfc6749)
+      required:
+        - authorizationUrl
+        - tokenUrl
+      properties:
+        serviceInfoUrl:
+          type: string
+          format: uri
+          description: |
+            If the authorization server itself implements the `service-info` endpoint, this property
+            provides the full URL to that endpoint
+          example: https://authorization-server.com/service-info
+        authorizationUrl:
+          type: string
+          format: uri
+          description: |
+            The full URL to the authorization server's **Authorization Endpoint** ([RFC 6749 3.1](https://tools.ietf.org/html/rfc6749#section-3.1)),
+            that is, the endpoint that provides an authorization grant.
+          example: https://authorization-server.com/oauth/authorize
+        tokenUrl:
+          type: string
+          format: uri
+          description: |
+            The full URL to the authorization server's **Token Endpoint** ([RFC 6749 3.2](https://tools.ietf.org/html/rfc6749#section-3.2)),
+            that is, the endpoint that provides an access token once supplied with a valid authorization grant/refresh token.
+          example: https://authorization-server.com/oauth/token
+    ScopeDefinition:
+      description: |
+        Indicates the scope(s) that must be provided to the authorization server's authorization endpoint
+        for a given set of protected resources on the resource server / web service.
+      type: object
+      required:
+        - endpoint
+        - requiredScopes
+      properties:
+        endpoint:
+          type: string
+          description: |
+            A relative URL path (relative to the web service's base URL) to which the scopes apply.
+            To access protected resources behind this path, the corresponding `requiredScopes` must
+            first be supplied to the authorization server's authorization endpoint.
+          example: /reads
+        requiredScopes:
+          type: array
+          description: |
+            A list of scopes that MUST be supplied to the authorization endpoint to retrieve a valid authorization grant.
+            The list of scopes MUST be supplied via the `scope` query string parameter as a space-delimited string.
+          items:
+            type: string
+            example: getreads
