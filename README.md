@@ -8,7 +8,7 @@ This document is intended to be used by service-info implementors and consumers.
 
 ## Specification
 
-Service-info is described in our [OpenAPI specification](./service-info.yaml), which can be visualised using [Swagger Editor](https://editor.swagger.io/?url=https://raw.githubusercontent.com/ga4gh-discovery/ga4gh-service-info/develop/service-info.yaml).
+Service-info is described in our [OpenAPI specification](./openapi/openapi.yaml), which can be visualised in our [Redoc documentation](https://ga4gh-discovery.github.io/ga4gh-service-info/docs/).
 
 ### Essentials
 
