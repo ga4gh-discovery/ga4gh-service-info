@@ -72,6 +72,8 @@ components:
               format: uri
               description: 'URL of the website of the organization (RFC 3986 format)'
               example: 'https://example.com'
+        location:
+          $ref: '#/components/schemas/GeoLocation'
         contactUrl:
           type: string
           format: uri
@@ -120,3 +122,103 @@ components:
           type: string
           description: 'Version of the API or specification. GA4GH specifications use semantic versioning.'
           example: '1.0.0'
+    GeoLocation:
+      description: >-
+        Geographic location of the service, either representing the
+        organization's head node or the location of the service, as an
+        instance of a GeoJSON `feature`.
+
+         **Provenance**: [IETF GeoJSON specification](https://tools.ietf.org/html/rfc7946)
+      type: object
+      required:
+        - type
+        - geometry
+        - properties
+      properties:
+        type:
+          description: >-
+            The type of the GeoJSON object which must be `Feature`.
+          const: Feature
+        geometry:
+          description: >-
+            The geographic point object uses the default units from the
+            [DCMI point scheme](https://www.dublincore.org/specifications/dublin-core/dcmi-point/)
+            and avoids optional representation in non-standard units.
+          type: object
+          required:
+            - type
+            - coordinates
+          properties:
+            type:
+              description: >-
+                The type of the GeoJSON geometry which must be `Point` for the context
+                of this service.
+              const: Point
+            coordinates:
+              description: >-
+                An array of 2 (North/latitude, East/longitude) or 3 (North, East, elevation)
+                ordered values (DCMI point scheme).
+              type: array
+              items:
+                type: number
+                format: float
+              minItems: 2
+              maxItems: 3
+              examples:
+                - - 47.37
+                  - 8.55
+                - - 45.97249611
+                  - 7.65499738
+                  - 4478
+                - - -33.958287
+                  - 18.459974
+        properties:
+          description: >-
+            As an instance of the GeoJSON `properties` object. The parameters
+            provide additional information for the interpretation of the location.
+            Note: the GeoJSON standard does not provide specifications for
+            the content of its `properties` object.
+          type: object
+          additionalProperties: true
+          required:
+            - label
+          properties:
+            label:
+              type: string
+              examples:
+                - Gainesville, United States of America
+                - Zurich, Switzerland
+                - Str Marasesti 5, 300077 Timisoara, Romania
+                - Matterhorn
+            city:
+              type: string
+              description: >-
+                The optional name of the city the point location maps to.
+                It should be considered secondary to the location values
+                in interpreting the geographic location.
+              Examples:
+                - Gainesville
+                - Zurich
+                - Hinxton
+                - Zermatt
+            country:
+              type: string
+              description: >-
+                The optional name of the country the location maps to,
+                for checks and procedural convenience (see notes for `city`).
+              examples:
+                - Korea, Republic of
+                - Rwanda
+                - Switzerland
+            ISO3166alpha3:
+              description:
+                The optional [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)
+                code of the country the location maps to.
+              type: string
+              examples:
+                - KOR
+                - RWA
+                - CHE
+
+
+
